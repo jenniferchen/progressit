@@ -1,4 +1,4 @@
-TrelloClone.Views.CardNew = Backbone.View.extend({
+Progressi.Views.CardNew = Backbone.View.extend({
   template: JST['cards/new'],
 
   events: {
@@ -15,7 +15,7 @@ TrelloClone.Views.CardNew = Backbone.View.extend({
     event.preventDefault();
     var view = this;
     var formData = $(event.target).serializeJSON();
-    var card = new TrelloClone.Models.Card(formData['card']);
+    var card = new Progressi.Models.Card(formData['card']);
 
     card.on("invalid", function(model, error){
       var errorMsg = $("<div>");

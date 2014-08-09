@@ -1,10 +1,10 @@
-window.TrelloClone = {
+window.Progressi = {
   Models: {},
   Collections: {},
   Views: {},
   Routers: {},
   initialize: function() {
-    new TrelloClone.Routers.AppRouter();
+    new Progressi.Routers.AppRouter();
     Backbone.history.start();
   }
 };

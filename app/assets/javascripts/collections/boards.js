@@ -1,6 +1,6 @@
-TrelloClone.Collections.Boards = Backbone.Collection.extend({
-  model: TrelloClone.Models.Board,
+Progressi.Collections.Boards = Backbone.Collection.extend({
+  model: Progressi.Models.Board,
   url: 'api/boards'
 });
 
-TrelloClone.Collections.boards = new TrelloClone.Collections.Boards();
+Progressi.Collections.boards = new Progressi.Collections.Boards();

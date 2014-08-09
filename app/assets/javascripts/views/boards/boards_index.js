@@ -1,8 +1,8 @@
-TrelloClone.Views.Board = Backbone.View.extend({
+Progressi.Views.Board = Backbone.View.extend({
   template: JST["boards/board"],
-
+  tagName: "li",
   events: {
-    "click .panel": "showBoard"
+    "click": "showBoard"
   },
 
   render: function(){
@@ -11,13 +11,15 @@ TrelloClone.Views.Board = Backbone.View.extend({
     return this;
   },
 
-  showBoard: function(){
+  showBoard: function(event){
+    event.preventDefault();
+    this.$el.addClass("active");
+    this.$el.siblings().removeClass("active");
     Backbone.history.navigate('boards/' + this.model.id, { trigger: true })
   }
-  
 })
 
-TrelloClone.Views.BoardsIndex = Backbone.View.extend({
+Progressi.Views.BoardsIndex = Backbone.View.extend({
   template: JST["boards/index"],
 
   initialize: function(){
@@ -29,8 +31,8 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
     var renderedContent = this.template({ boards: this.collection });
     this.$el.html(renderedContent);
     this.collection.each(function(board){
-      var boardView = new TrelloClone.Views.Board({ model: board });
-      view.$el.append(boardView.render().$el);
+      var boardView = new Progressi.Views.Board({ model: board });
+      view.$el.find('.nav-sidebar').append(boardView.render().$el);
     })
     return this;
   }

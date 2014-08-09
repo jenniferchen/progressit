@@ -1,4 +1,4 @@
-TrelloClone.Views.CardShow = Backbone.CompositeView.extend({
+Progressi.Views.CardShow = Backbone.CompositeView.extend({
   template: JST['cards/show'],
   tagName: 'li',
   className: "card panel panel-default",

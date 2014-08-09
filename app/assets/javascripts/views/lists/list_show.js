@@ -1,4 +1,4 @@
-TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
+Progressi.Views.ListShow = Backbone.CompositeView.extend({
   template: JST['lists/show'],
   tagName: "li",
   className: "list col-xs-3",
@@ -6,7 +6,7 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
   id: function(){ return "card-" + this.model.id },
 
   initialize: function(){
-    var cardNewView = new TrelloClone.Views.CardNew({ model: this.model });
+    var cardNewView = new Progressi.Views.CardNew({ model: this.model });
     this.addSubview('.cards-new', cardNewView);
 
     var cards = this.model.cards();
@@ -18,7 +18,7 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
   addCard: function(card){
     var idTag = "#card-" + card.id;
     if (this.$el.find(idTag).length == 0){
-      var cardShowView = new TrelloClone.Views.CardShow({ model: card});
+      var cardShowView = new Progressi.Views.CardShow({ model: card});
       this.addSubview('.cards', cardShowView);
     }
   },

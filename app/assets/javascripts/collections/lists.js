@@ -1,5 +1,5 @@
-TrelloClone.Collections.Lists = Backbone.Collection.extend({
-  model: TrelloClone.Models.List,
+Progressi.Collections.Lists = Backbone.Collection.extend({
+  model: Progressi.Models.List,
   url: 'api/lists',
   comparator: 'ord',
 

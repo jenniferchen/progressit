@@ -27,3 +27,4 @@ end
 
 gem 'pg'
 gem 'newrelic_rpm'
+gem 'rename'

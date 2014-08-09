@@ -1,4 +1,4 @@
-TrelloClone.Models.Card = Backbone.Model.extend({
+Progressi.Models.Card = Backbone.Model.extend({
   urlRoot: 'api/cards',
 
   validate: function(attributes){
@@ -8,7 +8,7 @@ TrelloClone.Models.Card = Backbone.Model.extend({
   },
   
   items: function(){
-    this._items = this._items || new TrelloClone.Collections.Items([], {card: this});
+    this._items = this._items || new Progressi.Collections.Items([], {card: this});
     return this._items;
   }
 });
