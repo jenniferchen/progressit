@@ -1,7 +1,7 @@
 Progressi.Views.CardShow = Backbone.CompositeView.extend({
   template: JST['cards/show'],
   tagName: 'li',
-  className: "card panel panel-default",
+  className: "card list-group-item",
 
   id: function(){ return "card-" + this.model.id },
   

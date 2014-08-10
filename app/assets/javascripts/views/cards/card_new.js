@@ -27,9 +27,9 @@ Progressi.Views.CardNew = Backbone.View.extend({
     card.save({}, {
       success: function(){
         view.model.cards().add(card);
-        view.render();
+        view.remove();
+        $('.glyphicon-plus').removeClass("invisible");
       }
     })
   }
-
 });

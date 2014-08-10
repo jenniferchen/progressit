@@ -29,7 +29,7 @@ Progressi.Views.BoardShow = Backbone.CompositeView.extend({
     var lists = this.$el.find(".lists")
     lists.sortable({
       connectWith: ".lists",
-      placeholder: "col-xs-3 panel panel-primary",
+      placeholder: "panel panel-default",
       forcePlaceholderSize: true,
       tolerance: 'pointer',
       update: function (event, ui) {

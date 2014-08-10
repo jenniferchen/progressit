@@ -44,5 +44,11 @@ Backbone.CompositeView = Backbone.View.extend({
       this._subviews[selector] = this._subviews[selector] || [];
       return this._subviews[selector];
     }
+  },
+
+  swapSubview: function (selector, newView){
+    var compositeView = this;
+    this.subviews(selector).forEach(function(subview){ compositeView.removeSubview(selector, subview) });
+    this.addSubview(selector, newView);
   }
 });

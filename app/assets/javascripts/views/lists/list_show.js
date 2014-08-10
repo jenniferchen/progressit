@@ -1,18 +1,18 @@
 Progressi.Views.ListShow = Backbone.CompositeView.extend({
   template: JST['lists/show'],
   tagName: "li",
-  className: "list col-xs-3",
+  className: "list",
   
+  events: {
+    "click .glyphicon-plus": "renderNewCardView"
+  },
+
   id: function(){ return "card-" + this.model.id },
 
   initialize: function(){
-    var cardNewView = new Progressi.Views.CardNew({ model: this.model });
-    this.addSubview('.cards-new', cardNewView);
-
     var cards = this.model.cards();
     cards.each(this.addCard.bind(this));
     this.listenTo(cards, "add", this.addCard);
-
   },
 
   addCard: function(card){
@@ -31,12 +31,18 @@ Progressi.Views.ListShow = Backbone.CompositeView.extend({
     return this;
   },
 
+  renderNewCardView: function(){
+    this.$('.glyphicon-plus').addClass("invisible");
+    var cardNewView = new Progressi.Views.CardNew({ model: this.model });
+    this.swapSubview('.cards-new', cardNewView);
+  },
+
   makeCardsSortable: function(){
     var view = this;
     var cards = this.$el.find(".cards")
     cards.sortable({
       connectWith: ".cards",
-      placeholder: "panel panel-primary",
+      placeholder: "list-group-item list-group-item-info",
       forcePlaceholderSize: true,
       update: function (event, ui) {
         var data = cards.sortable('serialize');
