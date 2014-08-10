@@ -6,8 +6,11 @@ Progressi.Views.BoardShow = Backbone.CompositeView.extend({
     this.listenTo(lists, "add", this.addList);
 
     lists.each(this.addList.bind(this));
-    var listNewView = new Progressi.Views.ListNew({ model: this.model });
-    this.addSubview(".lists-new", listNewView);
+
+    if (this.model.get('owned') == true){
+      var listNewView = new Progressi.Views.ListNew({ model: this.model });
+      this.addSubview(".lists-new", listNewView);
+    }
   },
 
   addList: function(list, index){
@@ -20,7 +23,9 @@ Progressi.Views.BoardShow = Backbone.CompositeView.extend({
     this.$el.html(renderedContent);
     this.attachSubviews();
     this.$el.find(".lists").append("<li></li>");
-    this.makeListsSortable();
+    if (this.model.get('owned') == true){
+      this.makeListsSortable();
+    }
     return this;
   },
 

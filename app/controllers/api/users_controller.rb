@@ -5,12 +5,12 @@ module Api
     def index
       @board = current_board
       @members = @board.members
-      render json: @members
+      render :index
     end
 
     def show
       @user = User.find(params[:id])
-      render json: @user
+      render :show
     end
 
     private

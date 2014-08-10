@@ -12,7 +12,7 @@ Progressi.Views.CardShow = Backbone.CompositeView.extend({
   render: function(){
     var renderedContent = this.template({ card: this.model });
     this.$el.html(renderedContent);
-    if (this.model.get('status') === "Unassigned"){
+    if (this.model.get('status') === "Unassigned" && this.model.get('owned') === true){
       this.makeCardAssignmentDroppable();
     }
     return this;

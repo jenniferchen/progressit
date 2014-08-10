@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   has_many :boards
   has_many :board_memberships
+  has_many :member_boards, through: :board_memberships, source: :board
   has_many :cards
 
   attr_reader :password

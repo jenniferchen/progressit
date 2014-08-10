@@ -17,13 +17,12 @@ module Api
     end
 
     def index
-      @boards = current_user.boards
-      render json: @boards
+      @all_boards = current_user.boards + current_user.member_boards
+      render :index
     end
 
     def show
       @board = Board.includes(:members, lists: {cards: :items}).find(params[:id])
-
       if @board.is_member?(current_user)
         render :show
       else

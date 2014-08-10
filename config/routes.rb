@@ -13,6 +13,4 @@ Progressi::Application.routes.draw do
     resources :cards, only: [:show, :create, :update, :destroy]
     resources :users, only: [:show]
   end
-
-  resources :card_assignments
 end

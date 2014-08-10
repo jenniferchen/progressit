@@ -29,13 +29,15 @@ Progressi.Views.MembersIndex = Backbone.CompositeView.extend({
   
   render: function(){
     var view = this;
-    var renderedContent = this.template({ members: this.collection });
+    var renderedContent = this.template({ board: this.model, members: this.collection });
     this.$el.html(renderedContent);
     this.collection.each(function(member){
       var memberView = new Progressi.Views.Member({ model: member });
       view.$('.members-list').append(memberView.render().$el);
     })
-    this.makeMembersDraggable();
+    if (this.model.get('owned') === true){
+      this.makeMembersDraggable();
+    }
     return this;
   },
 

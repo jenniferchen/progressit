@@ -1,7 +1,9 @@
 <ul class="members-list">
 </ul>
 
-<button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> New Member</button>
+<% if (board.get('owned') === true){ %>
+  <button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> New Member</button>
+<% } %>
 
 <div class="new-board-membership">
 </div>

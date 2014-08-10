@@ -23,7 +23,7 @@
     Due: <%= card.formattedTime('due_time') %>
   </div>
   <div class="col-xs-4">
-    <% if (card.escape('status') === "Unassigned"){ %>
+    <% if (card.escape('status') === "Unassigned" && this.model.get('owned') === true){ %>
       <span class="drop-area pull-right">Drag team member here to assign</span>
     <% } else { %>
       <span class="pull-right"><%= card.escape('assigned_member') %></span>

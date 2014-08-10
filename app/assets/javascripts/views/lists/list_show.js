@@ -26,7 +26,9 @@ Progressi.Views.ListShow = Backbone.CompositeView.extend({
   render: function(){
     var renderedContent = this.template({ list: this.model });
     this.$el.html(renderedContent);
-    this.makeCardsSortable();
+    if (this.model.get('owned') == true){
+      this.makeCardsSortable();
+    }
     this.attachSubviews();
     return this;
   },

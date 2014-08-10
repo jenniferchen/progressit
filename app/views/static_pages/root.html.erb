@@ -13,4 +13,9 @@
     </div>
   </div>
 </div>
-<script>$(Progressi.initialize);</script>
+<script>
+  $(function(){
+    Progressi.initialize();
+    Progressi.currentUser = new Progressi.Models.User(<%= current_user.to_json.html_safe %>);
+  });
+</script>

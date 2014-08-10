@@ -41,7 +41,7 @@ Progressi.Routers.AppRouter = Backbone.Router.extend({
   boardNew: function(){
     var board = new Progressi.Models.Board();
     var newView = new Progressi.Views.BoardNew({ model: board });
-    router._swapContent(newView);
+    this._swapContent(newView);
   },
 
   _swapContent: function (newContent) {

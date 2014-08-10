@@ -4,6 +4,7 @@
   </div>
   <ul class="list-group cards">
   </ul>
-  
-  <div class="cards-new"><span class="glyphicon glyphicon-plus"></span></div>
+  <% if (list.get('owned') === true){ %>
+    <div class="cards-new"><span class="glyphicon glyphicon-plus"></span></div>
+  <% } %>
 </div>
