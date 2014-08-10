@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716203208) do
+ActiveRecord::Schema.define(version: 20140810070116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,22 +34,21 @@ ActiveRecord::Schema.define(version: 20140716203208) do
 
   add_index "boards", ["user_id"], name: "index_boards_on_user_id", using: :btree
 
-  create_table "card_assignments", force: true do |t|
-    t.integer  "card_id",    null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "card_assignments", ["card_id", "user_id"], name: "index_card_assignments_on_card_id_and_user_id", unique: true, using: :btree
-
   create_table "cards", force: true do |t|
-    t.string   "title",                     null: false
-    t.integer  "list_id",                   null: false
+    t.string   "title",                         null: false
+    t.integer  "list_id",                       null: false
     t.text     "description"
-    t.float    "ord",         default: 0.0
+    t.float    "ord",             default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "estimated_mins"
+    t.integer  "actual_mins"
+    t.datetime "due_time"
+    t.datetime "start_time"
+    t.datetime "completion_time"
+    t.datetime "recent_start"
+    t.datetime "recent_end"
   end
 
   add_index "cards", ["list_id"], name: "index_cards_on_list_id", using: :btree
