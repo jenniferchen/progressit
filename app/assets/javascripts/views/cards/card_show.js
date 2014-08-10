@@ -8,6 +8,17 @@ Progressi.Views.CardShow = Backbone.CompositeView.extend({
   render: function(){
     var renderedContent = this.template({ card: this.model });
     this.$el.html(renderedContent);
+    this.makeCardDroppable();
     return this;
+  },
+
+  makeCardDroppable: function(){
+    var view = this;
+    this.$el.droppable({
+      drop: function(event, ui){
+        $droppedEl = ui.draggable;
+        debugger
+      }
+    });
   }
 });
