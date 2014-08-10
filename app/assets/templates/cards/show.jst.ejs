@@ -1,7 +1,44 @@
-<div>
-  <%= card.escape('title') %>
-  <span class="pull-right"><%= card.escape('assigned_member') %></span>
+<div class="row">
+  <div class="col-xs-10">
+    <strong><%= card.escape('title') %></strong>
+  </div>
+  <div class="col-xs-2">
+    <% if (card.escape('status') === "Completed"){ %>
+      <span class="glyphicon glyphicon-checked pull-right"></span>
+    <% } %>
+    <% if (card.escape('status') === "In Progress"){ %>
+      <span class="glyphicon glyphicon-log-in pull-right"></span>
+    <% } %>
+    <% if (card.escape('status') === "Assigned"){ %>
+        <span class="glyphicon glyphicon-new-window pull-right"></span>
+    <% } %>
+    <% if (card.escape('status') === "Unassigned"){ %>
+        <span class="glyphicon glyphicon-unchecked pull-right"></span>
+    <% } %>
+  </div>
 </div>
 
-<div class="card-detail">
+<div class="row">
+  <div class="col-xs-8">
+    Due: <%= card.formattedTime('due_time') %>
+  </div>
+  <div class="col-xs-4">
+    <% if (card.escape('status') === "Unassigned"){ %>
+      <span class="drop-area pull-right">Drag team member here to assign</span>
+    <% } else { %>
+      <span class="pull-right"><%= card.escape('assigned_member') %></span>
+    <% } %>
+  </div>
 </div>
+<div class="row">
+  <div class="col-xs-8">
+    Estimated Time: <%= card.escape('estimated_mins')/60 %>Hrs
+  </div>
+  <% if (card.escape('status') === "Completed"){ %>
+    <div class="col-xs-4"> 
+      <span class="pull-right"><%= parseInt(card.escape('actual_mins') / card.escape('estimated_mins')) %>%</span>
+    </div>
+  <% } %>
+</div>
+
+<p><%= card.escape('description') %></p>

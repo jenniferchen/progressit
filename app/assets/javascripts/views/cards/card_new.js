@@ -15,8 +15,9 @@ Progressi.Views.CardNew = Backbone.View.extend({
     event.preventDefault();
     var view = this;
     var formData = $(event.target).serializeJSON();
+    formData['card']['due_time'] = formData['card']['due-date'] + "T" + formData['card']['due-date-time'];
+    formData['card']['estimated_mins'] = formData['card']['estimated-time']*60;
     var card = new Progressi.Models.Card(formData['card']);
-
     card.on("invalid", function(model, error){
       var errorMsg = $("<div>");
       errorMsg.addClass("alert alert-danger top-buffer");
@@ -25,8 +26,9 @@ Progressi.Views.CardNew = Backbone.View.extend({
     })
 
     card.save({}, {
-      success: function(){
-        view.model.cards().add(card);
+      success: function(newCard, response, options){
+        newCard.set('status', "Unassigned");
+        view.model.cards().add(newCard);
         view.remove();
         $('.glyphicon-plus').removeClass("invisible");
       }

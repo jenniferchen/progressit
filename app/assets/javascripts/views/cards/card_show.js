@@ -12,7 +12,9 @@ Progressi.Views.CardShow = Backbone.CompositeView.extend({
   render: function(){
     var renderedContent = this.template({ card: this.model });
     this.$el.html(renderedContent);
-    this.makeCardDroppable();
+    if (this.model.get('status') === "Unassigned"){
+      this.makeCardAssignmentDroppable();
+    }
     return this;
   },
 
@@ -21,9 +23,14 @@ Progressi.Views.CardShow = Backbone.CompositeView.extend({
     $("#card-" + this.model.id).html(renderedContent);
   },
 
-  makeCardDroppable: function(){
+  makeCardAssignmentDroppable: function(){
     var view = this;
-    this.$el.droppable({
+    this.$('.drop-area').droppable({
+      accept: ".member",
+      greedy: true,
+      over: function(){
+        view.$('.drop-area').addClass('invisible');
+      },
       drop: function(event, ui){
         var id = ui.draggable.attr('id').match(/user-(\d+)/)[1];
         view.model.save({ user_id: id }, {

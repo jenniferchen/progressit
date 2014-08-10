@@ -35,6 +35,33 @@ body {
   visibility: hidden;
 }
 
+// Status Icons
+
+.glyphicon-checked {
+  color: green;
+}
+
+.glyphicon-log-in {
+  color: yellow;
+}
+
+.glyphicon-new-window {
+  color: orange;
+}
+
+.glyphicon-unchecked {
+  color: red;
+}
+
+// Card Show View
+
+.drop-area {
+  padding: 0px 5px;
+  border: 1px dotted #CCCCCC;
+  color: #CCCCCC;
+}
+
+
 /*
  * Base structure
  */

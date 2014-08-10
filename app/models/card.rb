@@ -6,13 +6,13 @@
 #  title           :string(255)      not null
 #  list_id         :integer          not null
 #  description     :text
-#  ord             :float            default(0.0)
+#  ord             :integer          default(1000)
 #  created_at      :datetime
 #  updated_at      :datetime
 #  user_id         :integer
-#  estimated_mins  :integer
-#  actual_mins     :integer
-#  due_time        :datetime
+#  estimated_mins  :integer          not null
+#  actual_mins     :integer          default(0)
+#  due_time        :datetime         not null
 #  start_time      :datetime
 #  completion_time :datetime
 #  recent_start    :datetime
@@ -20,11 +20,17 @@
 #
 
 class Card < ActiveRecord::Base
+
+  validates :title, :list_id, :estimated_mins, :due_time, presence: true
+
   belongs_to :list
   has_many :items
   belongs_to :user
 
-  def completed?
-    !!completion_time
+  def status
+    return "Completed" if completion_time
+    return "In Progress" if start_time
+    return "Assigned" if user_id
+    "Unassigned"
   end
 end
