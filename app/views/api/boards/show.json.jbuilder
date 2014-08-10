@@ -17,7 +17,3 @@ json.lists @board.lists do |list|
     end
   end
 end
-
-json.members @board.members do |member|
-  json.extract! member, :email
-end

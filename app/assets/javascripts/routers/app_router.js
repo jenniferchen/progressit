@@ -6,10 +6,10 @@ Progressi.Routers.AppRouter = Backbone.Router.extend({
   },
 
   initialize: function(){
-    this.boardsIndex();
+    this._boardsIndex();
   },
 
-  boardsIndex: function(){
+  _boardsIndex: function(){
     var boards = Progressi.Collections.boards;
     boards.fetch({
       success: function(){
@@ -30,6 +30,10 @@ Progressi.Routers.AppRouter = Backbone.Router.extend({
       success: function(){
         var showView = new Progressi.Views.BoardShow({ model: board });
         router._swapContent(showView);
+        var members = new Progressi.Collections.Members({ board: board });
+        members.fetch();  
+        var membersView = new Progressi.Views.MembersIndex({ model: board, collection: members});
+        router._swapMembers(membersView);
       }
     })
   },
@@ -40,9 +44,15 @@ Progressi.Routers.AppRouter = Backbone.Router.extend({
     router._swapContent(newView);
   },
 
-  _swapContent: function (newView) {
-    this._currentView && this._currentView.remove();
-    this._currentView = newView;
-    $("#content").html(newView.render().$el);
+  _swapContent: function (newContent) {
+    this._currentContent && this._currentContent.remove();
+    this._currentContent = newContent;
+    $("#content").html(newContent.render().$el);
+  },
+
+  _swapMembers: function (newMembers) {
+    this._currentMembers && this._currentMembers.remove();
+    this._currentMembers = newMembers;
+    $("#members").html(newMembers.render().$el);
   }
 })

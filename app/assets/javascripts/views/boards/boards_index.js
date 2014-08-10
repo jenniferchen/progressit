@@ -23,7 +23,7 @@ Progressi.Views.BoardsIndex = Backbone.View.extend({
   template: JST["boards/index"],
 
   initialize: function(){
-    this.listenTo(this.collection, "sync", this.render()); 
+    this.listenTo(this.collection, "sync", this.render.bind(this)); 
   },
   
   render: function(){
