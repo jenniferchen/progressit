@@ -5,3 +5,4 @@ if @card.user
 end
 
 json.status @card.status
+json.assigned @card.assigned?(current_user)

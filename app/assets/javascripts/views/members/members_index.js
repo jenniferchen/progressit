@@ -43,7 +43,7 @@ Progressi.Views.MembersIndex = Backbone.CompositeView.extend({
 
   newBoardMembership: function(event){
     event.preventDefault();
-    this.$('button').addClass("invisible");
+    this.$('button').addClass("hidden");
     var newBoardMembershipView = new Progressi.Views.BoardMembershipNew({ model: this.model, collection: this.collection });
     this.addSubview('.new-board-membership', newBoardMembershipView);
   },

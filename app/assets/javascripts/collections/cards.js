@@ -4,7 +4,9 @@ Progressi.Collections.Cards = Backbone.Collection.extend({
   comparator: 'ord',
 
   initialize: function(models, options){
-    this.list = options.list
+    if (options && options.list){
+      this.list = options.list
+    }
   },
 
   getOrFetch: function(id){

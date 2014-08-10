@@ -3,24 +3,37 @@ Progressi.Views.CardShow = Backbone.CompositeView.extend({
   tagName: 'li',
   className: "card list-group-item",
 
+  events: {
+    "click .start": "start",
+    "click .pause": "pause",
+    "click .complete": "complete"    
+  },
+
   id: function(){ return "card-" + this.model.id },
 
   initialize: function(){
-    this.listenTo(this.model, "sync", this.refresh.bind(this));
+    this.listenTo(this.model, "sync", this.render.bind(this));
   },
   
   render: function(){
     var renderedContent = this.template({ card: this.model });
     this.$el.html(renderedContent);
-    if (this.model.get('status') === "Unassigned" && this.model.get('owned') === true){
+    if (this.model.get('status') == "Unassigned" && this.model.get('owned') == true){
       this.makeCardAssignmentDroppable();
     }
     return this;
   },
 
-  refresh: function(){
-    var renderedContent = this.template({ card: this.model });
-    $("#card-" + this.model.id).html(renderedContent);
+  start: function(){
+    this.model.start();
+  },
+
+  pause: function(){
+    this.model.pause();
+  },
+
+  complete: function(){
+    this.model.complete();
   },
 
   makeCardAssignmentDroppable: function(){
@@ -30,6 +43,9 @@ Progressi.Views.CardShow = Backbone.CompositeView.extend({
       greedy: true,
       over: function(){
         view.$('.drop-area').addClass('invisible');
+      },
+      out: function(){
+        view.$('.drop-area').removeClass('invisible');
       },
       drop: function(event, ui){
         var id = ui.draggable.attr('id').match(/user-(\d+)/)[1];

@@ -4,23 +4,31 @@
   </div>
   <div class="col-xs-2">
     <% if (card.escape('status') === "Completed"){ %>
-      <span class="glyphicon glyphicon-checked pull-right"></span>
+      <span class="glyphicon glyphicon-check pull-right"></span>
     <% } %>
     <% if (card.escape('status') === "In Progress"){ %>
       <span class="glyphicon glyphicon-log-in pull-right"></span>
     <% } %>
     <% if (card.escape('status') === "Assigned"){ %>
-        <span class="glyphicon glyphicon-new-window pull-right"></span>
+      <span class="glyphicon glyphicon-new-window pull-right"></span>
     <% } %>
     <% if (card.escape('status') === "Unassigned"){ %>
-        <span class="glyphicon glyphicon-unchecked pull-right"></span>
+      <span class="glyphicon glyphicon-unchecked pull-right"></span>
     <% } %>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-xs-8">
-    Due: <%= card.formattedTime('due_time') %>
+  <div class="col-xs-4">
+    <%= card.formattedTime('due_time') %>
+  </div>
+  <div class="col-xs-2">
+    <%= card.escape('estimated_mins')/60 %>Hrs
+  </div>
+  <div class="col-xs-2"> 
+    <% if (card.escape('status') === "Completed"){ %>
+      <span class="pull-right"><%= parseInt(card.escape('actual_mins') / card.escape('estimated_mins')) %>%</span>
+    <% } %>
   </div>
   <div class="col-xs-4">
     <% if (card.escape('status') === "Unassigned" && this.model.get('owned') === true){ %>
@@ -30,15 +38,14 @@
     <% } %>
   </div>
 </div>
-<div class="row">
-  <div class="col-xs-8">
-    Estimated Time: <%= card.escape('estimated_mins')/60 %>Hrs
-  </div>
-  <% if (card.escape('status') === "Completed"){ %>
-    <div class="col-xs-4"> 
-      <span class="pull-right"><%= parseInt(card.escape('actual_mins') / card.escape('estimated_mins')) %>%</span>
-    </div>
-  <% } %>
-</div>
 
 <p><%= card.escape('description') %></p>
+<% if (card.get('assigned') === true && card.escape('status') !== 'Completed'){ %>
+  <% if (!card.get('recent_start')){ %>
+    <button class="btn btn-default start"><span class="glyphicon glyphicon-play"></span></button>
+  <% } else { %>
+    <button class="btn btn-default pause"><span class="glyphicon glyphicon-pause"></span></button>
+  <% } %>
+  <%= Math.floor(card.get('actual_mins')/60) %> Hrs <%= card.get('actual_mins') % 60 %> Mins spent
+  <button class="btn btn-success pull-right complete"><span class="glyphicon glyphicon-ok"></span></button>
+<% } %>

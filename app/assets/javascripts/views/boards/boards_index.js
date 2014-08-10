@@ -32,7 +32,7 @@ Progressi.Views.BoardsIndex = Backbone.View.extend({
     this.$el.html(renderedContent);
     this.collection.each(function(board){
       var boardView = new Progressi.Views.Board({ model: board });
-      view.$el.find('.nav-sidebar').append(boardView.render().$el);
+      view.$el.find('.boards').append(boardView.render().$el);
     })
     return this;
   }

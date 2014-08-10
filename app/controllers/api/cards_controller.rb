@@ -1,6 +1,6 @@
 module Api
   class CardsController < ApiController
-    before_action :require_board_member!
+    before_action :require_board_member!, except: [:index]
 
     def create
       @card = current_list.cards.new(card_params)
@@ -28,6 +28,11 @@ module Api
       else
         render json: @card.errors.full_messages, status: :unprocessable_entity
       end
+    end
+
+    def index
+      @cards = current_user.cards
+      render :index
     end
 
     private

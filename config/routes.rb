@@ -10,7 +10,7 @@ Progressi::Application.routes.draw do
       resources :users, only: [:index]
     end
     resources :lists, only: [:create, :update, :destroy]
-    resources :cards, only: [:show, :create, :update, :destroy]
+    resources :cards, only: [:index, :show, :create, :update, :destroy]
     resources :users, only: [:show]
   end
 end

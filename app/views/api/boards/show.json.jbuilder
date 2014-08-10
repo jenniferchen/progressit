@@ -21,5 +21,6 @@ json.lists @board.lists do |list|
     end
 
     json.status card.status
+    json.assigned card.assigned?(current_user)
   end
 end

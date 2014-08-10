@@ -34,7 +34,7 @@ Progressi.Views.ListShow = Backbone.CompositeView.extend({
   },
 
   renderNewCardView: function(){
-    this.$('.glyphicon-plus').addClass("invisible");
+    this.$('.glyphicon-plus').addClass("hidden");
     var cardNewView = new Progressi.Views.CardNew({ model: this.model });
     this.swapSubview('.cards-new', cardNewView);
   },

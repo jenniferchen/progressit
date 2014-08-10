@@ -2,10 +2,13 @@ Progressi.Routers.AppRouter = Backbone.Router.extend({
   routes: {
     "": "summary",
     "boards/new": "boardNew",
-    "boards/:id": "boardShow"
+    "boards/:id": "boardShow",
+    "tasks": "cardsIndex"
   },
 
   initialize: function(){
+    Progressi.Collections.boards = new Progressi.Collections.Boards();
+    Progressi.Collections.cards = new Progressi.Collections.Cards();
     this._boardsIndex();
   },
 
@@ -21,6 +24,17 @@ Progressi.Routers.AppRouter = Backbone.Router.extend({
 
   summary: function(){
 
+  },
+
+  cardsIndex: function(){
+    var router = this;
+    var cards = Progressi.Collections.cards;
+    cards.fetch({
+      success: function(){
+        var indexView = new Progressi.Views.CardsIndex({ collection: cards});
+        router._swapContent(indexView);
+      }
+    })
   },
 
   boardShow: function(id){

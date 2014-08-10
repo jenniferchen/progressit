@@ -17,6 +17,30 @@ Progressi.Models.Card = Backbone.Model.extend({
     return this._formatTime(dateObj);
   },
 
+  start: function(){
+    if (!this.get('start_time')){
+      this.set({ start_time: new Date(Date.now()), status: "In Progress" });
+    }
+    this.set({recent_start: new Date(Date.now()) });
+    this.save();
+  },
+
+  pause: function(){
+    var runningTotal = this.get('actual_mins');
+    runningTotal += (Date.now() - Date.parse(this.get('recent_start'))) / 60000;
+    this.set({recent_start: null, actual_mins: runningTotal});
+    this.save();
+  },
+
+  complete: function(){
+    var card = this;
+    if (this.get('recent_start')){
+      this.pause();
+    }
+    this.set({completion_time: new Date(Date.now()), status: "Completed"});
+    this.save();
+  },
+
   _formatTime: function(dateObj){
     var dNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var dayOfWeek = dateObj.getUTCDay();

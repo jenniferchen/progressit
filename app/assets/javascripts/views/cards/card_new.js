@@ -27,10 +27,10 @@ Progressi.Views.CardNew = Backbone.View.extend({
 
     card.save({}, {
       success: function(newCard, response, options){
-        newCard.set('status', "Unassigned");
+        newCard.set({status: "Unassigned", owned: true, assigned: false});
         view.model.cards().add(newCard);
         view.remove();
-        $('.glyphicon-plus').removeClass("invisible");
+        $('.glyphicon-plus').removeClass("hidden");
       }
     })
   }

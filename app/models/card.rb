@@ -33,4 +33,8 @@ class Card < ActiveRecord::Base
     return "Assigned" if user_id
     "Unassigned"
   end
+
+  def assigned?(u)
+    self.user == u ? true : false
+  end
 end
