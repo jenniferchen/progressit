@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <% if (card.get('assigned') === true ){ %>
+    <% if (card.escape('status') !== 'Completed'){ %>
       <div class="row">
         <div class="col-xs-3"> 
           Time Spent:
@@ -52,7 +52,7 @@
           <%= Math.floor(card.escape('actual_mins') / 60) %> hrs <%= card.escape('actual_mins') % 60 %> mins
         </div>
         <% if (card.escape('status') === 'Completed') { %>
-          <div class="col-xs-3">
+          <div class="col-xs-6">
             <%= Math.floor(card.escape('actual_mins') / card.escape('estimated_mins') * 100) %>% of estimated
           </div>
         <% } %>
