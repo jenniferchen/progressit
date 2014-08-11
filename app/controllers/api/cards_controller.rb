@@ -35,6 +35,11 @@ module Api
       render :index
     end
 
+    def destroy
+      @card = Card.find(params[:id])
+      @card.destroy
+    end
+
     private
 
     def current_list
