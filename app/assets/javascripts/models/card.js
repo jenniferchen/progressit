@@ -62,6 +62,6 @@ Progressit.Models.Card = Backbone.Model.extend({
       min = "00";
     }
 
-    return dNames[dayOfWeek] + ", " + mon + "/" + day + "/" + yr + ", " + hr + ":" + min + ampm;
+    return dNames[dayOfWeek] + ", " + mon + 1 + "/" + day + "/" + yr + ", " + hr + ":" + min + ampm;
   }
 });
