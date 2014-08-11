@@ -17,7 +17,7 @@ Progressit.Views.CardNew = Backbone.View.extend({
     var view = this;
     var formData = $(event.target).serializeJSON();
     formData['card']['due_time'] = formData['card']['due-date'] + "T" + formData['card']['due-date-time'];
-    formData['card']['estimated_mins'] = formData['card']['estimated-time']*60;
+    formData['card']['estimated_mins'] = formData['card']['estimated-time-hours'] * 60 + formData['card']['estimated-time-minutes'] * 1;
     var card = new Progressit.Models.Card(formData['card']);
     card.on("invalid", function(model, error){
       var errorMsg = $("<div>");
