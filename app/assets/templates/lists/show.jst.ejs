@@ -1,10 +1,15 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <strong><%= list.escape('title') %></strong>
+    <span class="glyphicon glyphicon-remove delete-list pull-right"></span>
   </div>
   <ul class="list-group cards">
   </ul>
   <% if (list.get('owned') === true){ %>
-    <div class="cards-new"><span class="glyphicon glyphicon-plus"></span></div>
+    <div class="cards-new">
+      <div class="add-card">
+        <span class="glyphicon glyphicon-plus"></span> New Task
+      </div>
+    </div>
   <% } %>
 </div>

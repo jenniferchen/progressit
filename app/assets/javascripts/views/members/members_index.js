@@ -1,7 +1,6 @@
 Progressit.Views.Member = Backbone.View.extend({
   template: JST["members/member"],
   tagName: "li",
-  className: "member",
 
   id: function(){ return "user-" + this.model.id },
 

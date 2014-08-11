@@ -30,8 +30,8 @@ Progressit.Views.CardNew = Backbone.View.extend({
       success: function(newCard, response, options){
         newCard.set({status: "Unassigned", owned: true, assigned: false});
         view.model.cards().add(newCard);
+        view.$el.siblings().removeClass("hidden");
         view.remove();
-        $('.glyphicon-plus').removeClass("hidden");
       }
     })
   },

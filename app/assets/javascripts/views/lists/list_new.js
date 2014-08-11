@@ -21,10 +21,12 @@ Progressit.Views.ListNew = Backbone.View.extend({
       success: function(){
         list.set({ owned: true });
         view.model.lists().add(list);
+        view.$el.parent().siblings().removeClass('hidden');
+        view.remove();
       }
     });
   },
-  
+
   cancel: function(event){
     event.preventDefault();
     this.$el.parent().siblings().removeClass('hidden');

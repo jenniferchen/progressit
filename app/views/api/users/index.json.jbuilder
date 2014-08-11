@@ -1,1 +1,1 @@
-json.array! @members, :id, :email
+json.array! @members, :id, :name, :email

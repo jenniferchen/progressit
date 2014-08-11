@@ -16,7 +16,7 @@ Progressit.Views.Board = Backbone.View.extend({
     this.$el.addClass("active");
     this.$el.siblings().removeClass("active");
     this.$el.parent().siblings().find('li').removeClass("active");
-    Backbone.history.navigate('boards/' + this.model.id, { trigger: true })
+    Backbone.history.navigate('projects/' + this.model.id, { trigger: true })
   }
 })
 
@@ -30,7 +30,7 @@ Progressit.Views.BoardsIndex = Backbone.CompositeView.extend({
   },
 
   initialize: function(){
-    this.listenTo(this.collection, "sync", this.render.bind(this)); 
+    this.listenTo(this.collection, "sync remove", this.render.bind(this)); 
   },
   
   render: function(){

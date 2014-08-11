@@ -42,7 +42,7 @@ Progressit.Models.Card = Backbone.Model.extend({
   },
 
   _formatTime: function(dateObj){
-    var dNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var dNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     var dayOfWeek = dateObj.getUTCDay();
     var mon = dateObj.getUTCMonth();
     var day = dateObj.getUTCDate();

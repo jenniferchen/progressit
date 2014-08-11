@@ -6,7 +6,8 @@ Progressit.Views.CardShow = Backbone.CompositeView.extend({
   events: {
     "click .start": "start",
     "click .pause": "pause",
-    "click .complete": "complete"    
+    "click .complete": "complete",
+    "click .delete": "delete"
   },
 
   id: function(){ return "card-" + this.model.id },
@@ -34,6 +35,11 @@ Progressit.Views.CardShow = Backbone.CompositeView.extend({
 
   complete: function(){
     this.model.complete();
+  },
+
+  delete: function(){
+    this.model.destroy();
+    this.remove();
   },
 
   makeCardAssignmentDroppable: function(){

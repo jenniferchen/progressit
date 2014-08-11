@@ -1,9 +1,10 @@
 module Api
   class BoardsController < ApiController
     def create
-      @board = current_user.boards.new(board_params)
-
+      @board = Board.new(board_params)
+      @board.user_id = current_user.id
       if @board.save
+        @board.board_memberships.create!(user_id: current_user.id)
         render json: @board
       else
         render json: @board.errors.full_messages, status: :unprocessable_entity

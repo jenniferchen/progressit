@@ -31,7 +31,7 @@ module Api
     end
 
     def index
-      @cards = current_user.cards
+      @cards = current_user.cards.where('completion_time IS NULL')
       render :index
     end
 

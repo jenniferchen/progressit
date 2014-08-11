@@ -1,41 +1,45 @@
 Progressit.Routers.AppRouter = Backbone.Router.extend({
   routes: {
     "": "summary",
-    "boards/new": "boardNew",
-    "boards/:id": "boardShow",
+    "projects/new": "boardNew",
+    "projects/:id": "boardShow",
     "tasks": "cardsIndex"
   },
 
   initialize: function(){
     Progressit.Collections.boards = new Progressit.Collections.Boards();
+    Progressit.Collections.boards.fetch();
     Progressit.Collections.cards = new Progressit.Collections.Cards();
+    Progressit.Collections.cards.fetch();
     this._boardsIndex();
+    this._boardsSummary();
   },
 
   _boardsIndex: function(){
-    var boards = Progressit.Collections.boards;
-    boards.fetch({
-      success: function(){
-        var indexView = new Progressit.Views.BoardsIndex({ collection: boards });
-        $(".left-sidebar").html(indexView.render().$el);
-      }
-    });
+    var indexView = new Progressit.Views.BoardsIndex({ collection: Progressit.Collections.boards });
+    $(".left-sidebar").html(indexView.render().$el);
   },
 
   summary: function(){
     var summaryView = new Progressit.Views.Summary({ collection: Progressit.Collections.boards })
     this._swapContent(summaryView);
+    this._boardsSummary();
+  },
+
+  _tasksSummary: function(){
+    var tasksSummaryView = new Progressit.Views.TasksSummary({ collection: Progressit.Collections.cards })
+    this._swapRight(tasksSummaryView);
+  },
+
+  _boardsSummary: function(){
+    var boardsSummaryView = new Progressit.Views.BoardsSummary({ collection: Progressit.Collections.boards })
+    this._swapRight(boardsSummaryView);
   },
 
   cardsIndex: function(){
-    var router = this;
-    var cards = Progressit.Collections.cards;
-    cards.fetch({
-      success: function(){
-        var indexView = new Progressit.Views.CardsIndex({ collection: cards});
-        router._swapContent(indexView);
-      }
-    })
+    var indexView = new Progressit.Views.CardsIndex({ collection: Progressit.Collections.cards });
+    this._swapContent(indexView);
+    this._tasksSummary();
   },
 
   boardShow: function(id){
@@ -48,7 +52,7 @@ Progressit.Routers.AppRouter = Backbone.Router.extend({
         var members = new Progressit.Collections.Members({ board: board });
         members.fetch();  
         var membersView = new Progressit.Views.MembersIndex({ model: board, collection: members});
-        router._swapMembers(membersView);
+        router._swapRight(membersView);
       }
     })
   },
@@ -65,9 +69,9 @@ Progressit.Routers.AppRouter = Backbone.Router.extend({
     $("#content").html(newContent.render().$el);
   },
 
-  _swapMembers: function (newMembers) {
-    this._currentMembers && this._currentMembers.remove();
-    this._currentMembers = newMembers;
-    $("#members").html(newMembers.render().$el);
+  _swapRight: function (newView) {
+    this._currentView && this._currentView.remove();
+    this._currentView = newView;
+    $("#right-panel").html(newView.render().$el);
   }
 })

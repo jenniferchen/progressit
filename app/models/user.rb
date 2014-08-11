@@ -11,7 +11,7 @@
 #
 
 class User < ActiveRecord::Base
-  validates :email, :session_token, presence: true
+  validates :name, :email, :session_token, presence: true
 
   has_many :boards
   has_many :board_memberships

@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-xs-10">
+  <div class="col-xs-7">
     <strong><%= card.escape('title') %></strong>
   </div>
-  <div class="col-xs-2">
+  <div class="col-xs-5 card-header">
     <% if (card.escape('status') === "Completed"){ %>
       <span class="glyphicon glyphicon-check pull-right"></span>
     <% } %>
@@ -15,22 +15,6 @@
     <% if (card.escape('status') === "Unassigned"){ %>
       <span class="glyphicon glyphicon-unchecked pull-right"></span>
     <% } %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-4">
-    <%= card.formattedTime('due_time') %>
-  </div>
-  <div class="col-xs-2">
-    <%= card.escape('estimated_mins')/60 %>Hrs
-  </div>
-  <div class="col-xs-2"> 
-    <% if (card.escape('status') === "Completed"){ %>
-      <span class="pull-right"><%= parseInt(card.escape('actual_mins') / card.escape('estimated_mins')) %>%</span>
-    <% } %>
-  </div>
-  <div class="col-xs-4">
     <% if (card.escape('status') === "Unassigned" && this.model.get('owned') === true){ %>
       <span class="drop-area pull-right">Drag team member here to assign</span>
     <% } else { %>
@@ -39,13 +23,57 @@
   </div>
 </div>
 
+
+<div class="row top-buffer-small">
+  <div class="col-xs-8">
+    <div class="row">
+      <div class="col-xs-3">
+        Due:
+      </div>
+      <div class="col-xs-9">
+        <%= card.formattedTime('due_time') %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">
+        Estimated Time:
+      </div>
+      <div class="col-xs-9">
+        <%= Math.floor(card.escape('estimated_mins') / 60) %> hrs <%= card.escape('estimated_mins') % 60 %> mins
+      </div>
+    </div>
+
+    <% if (card.get('assigned') === true ){ %>
+      <div class="row">
+        <div class="col-xs-3"> 
+          Time Spent:
+        </div>
+        <div class="col-xs-3">
+          <%= Math.floor(card.escape('actual_mins') / 60) %> hrs <%= card.escape('actual_mins') % 60 %> mins
+        </div>
+        <% if (card.escape('status') === 'Completed') { %>
+          <div class="col-xs-3">
+            <%= Math.floor(card.escape('actual_mins') / card.escape('estimated_mins') * 100) %>% of estimated
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+  <div class="col-xs-4">
+    <% if (card.get('owned') === true){ %>
+      <button class="btn btn-danger pull-right delete left-buffer"><span class="glyphicon glyphicon-remove"></span></button>
+    <% } %>
+
+    <% if (card.get('assigned') === true && card.escape('status') !== 'Completed'){ %>
+      <button class="btn btn-success pull-right complete left-buffer"><span class="glyphicon glyphicon-ok"></span></button>
+      <% if (!card.get('recent_start')){ %>
+        <button class="btn btn-default pull-right start left-buffer"><span class="glyphicon glyphicon-play"></span></button>
+      <% } else { %>
+        <button class="btn btn-default pull-right pause left-buffer"><span class="glyphicon glyphicon-pause"></span></button>
+      <% } %>
+    <% } %>
+  </div>
+</div>
+
+
 <p><%= card.escape('description') %></p>
-<% if (card.get('assigned') === true && card.escape('status') !== 'Completed'){ %>
-  <% if (!card.get('recent_start')){ %>
-    <button class="btn btn-default start"><span class="glyphicon glyphicon-play"></span></button>
-  <% } else { %>
-    <button class="btn btn-default pause"><span class="glyphicon glyphicon-pause"></span></button>
-  <% } %>
-  <%= Math.floor(card.get('actual_mins')/60) %> Hrs <%= card.get('actual_mins') % 60 %> Mins spent
-  <button class="btn btn-success pull-right complete"><span class="glyphicon glyphicon-ok"></span></button>
-<% } %>

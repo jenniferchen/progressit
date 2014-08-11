@@ -28,3 +28,5 @@ end
 gem 'pg'
 gem 'newrelic_rpm'
 gem 'rename'
+gem 'figaro'
+gem 'faker'

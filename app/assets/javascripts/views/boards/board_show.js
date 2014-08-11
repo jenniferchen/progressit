@@ -2,7 +2,8 @@ Progressit.Views.BoardShow = Backbone.CompositeView.extend({
   template: JST['boards/show'],
 
   events: {
-    "click .new-list": "renderListNew"
+    "click .new-list": "renderListNew",
+    "click .delete-board": "delete"
   },
 
   initialize: function(){
@@ -26,6 +27,13 @@ Progressit.Views.BoardShow = Backbone.CompositeView.extend({
       this.makeListsSortable();
     }
     return this;
+  },
+
+  delete: function(){
+    this.model.destroy();
+    Progressit.Collections.boards.remove(this.model);
+    this.remove();
+    Backbone.history.navigate('', { trigger: true });
   },
 
   makeListsSortable: function(){

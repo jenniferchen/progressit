@@ -4,7 +4,8 @@ Progressit.Views.ListShow = Backbone.CompositeView.extend({
   className: "list",
   
   events: {
-    "click .glyphicon-plus": "renderNewCardView"
+    "click .add-card": "renderNewCardView",
+    "click .delete-list": "delete"
   },
 
   id: function(){ return "card-" + this.model.id },
@@ -34,9 +35,15 @@ Progressit.Views.ListShow = Backbone.CompositeView.extend({
   },
 
   renderNewCardView: function(){
-    this.$('.glyphicon-plus').addClass("hidden");
+    this.$('.add-card').addClass("hidden");
     var cardNewView = new Progressit.Views.CardNew({ model: this.model });
     this.swapSubview('.cards-new', cardNewView);
+  },
+
+
+  delete: function(){
+    this.model.destroy();
+    this.remove();
   },
 
   makeCardsSortable: function(){

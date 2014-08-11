@@ -15,10 +15,10 @@ Progressit.Models.Board = Backbone.Model.extend({
   },
 
   completionPercent: function(){
-    if (this.get('total_estimated') === 0) {
-      return 0;
-    } else {
+    if (this.get('total_estimated') && this.get('total_estimated') !== 0) {
       return (this.get('total_completed') / this.get('total_estimated') * 100).toFixed();
+    } else {
+      return 0;
     }
   }
 });

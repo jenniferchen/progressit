@@ -20,7 +20,7 @@ Progressit.Views.BoardNew = Backbone.View.extend({
       success: function(){
         board.set({ owned: true });
         Progressit.Collections.boards.add(board);
-        Backbone.history.navigate('', { trigger: true });
+        Backbone.history.navigate('projects/' + board.id, { trigger: true });
       }
     });
   },

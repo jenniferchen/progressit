@@ -43,5 +43,9 @@ Progressit.Collections.Cards = Backbone.Collection.extend({
         }
       })
     }
+  },
+
+  totalEstimated: function(){
+    return this.inject(function(sum, card){ return sum + card.get('estimated_mins'); }, 0)
   }
 });

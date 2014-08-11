@@ -20,7 +20,7 @@ json.lists @board.lists do |list|
     json.owned @board.owned?(current_user)
 
     if card.user
-      json.assigned_member card.user.email
+      json.assigned_member card.user.name
     end
 
     json.status card.status

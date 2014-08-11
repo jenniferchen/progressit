@@ -33,7 +33,18 @@ body {
   background-color: rgba(66,139,202, .2);
 }
 
-.top-buffer { margin-top:20px; }
+.top-buffer { margin-top: 20px; }
+.top-buffer-small { margin-top: 5px; }
+
+.left-buffer { margin-left: 10px; }
+
+h3 .badge {
+  vertical-align: middle;
+}
+
+h2 .glyphicon {
+  color: #CCCCCC;
+}
 
 .cards {
   min-height: 5px;
@@ -49,6 +60,9 @@ body {
 }
 
 // Status Icons
+.card-header > .glyphicon {
+  padding-left: 10px;
+}
 
 .glyphicon-check {
   color: green;
@@ -108,7 +122,7 @@ body {
   padding: 8px 15px;
 }
 
-.glyphicon-play {
+.navbar-inverse .glyphicon-play {
   top: 4px;
 }
 
