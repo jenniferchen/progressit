@@ -1,8 +1,8 @@
-Progressi.Models.List = Backbone.Model.extend({
+Progressit.Models.List = Backbone.Model.extend({
   urlRoot: 'api/lists',
 
   cards: function(){
-    this._cards = this._cards || new Progressi.Collections.Cards([], {list: this});
+    this._cards = this._cards || new Progressit.Collections.Cards([], {list: this});
     return this._cards;
   },
 

@@ -1,4 +1,4 @@
-Progressi.Views.BoardNew = Backbone.View.extend({
+Progressit.Views.BoardNew = Backbone.View.extend({
   template: JST['boards/new'],
 
   events: {
@@ -14,10 +14,10 @@ Progressi.Views.BoardNew = Backbone.View.extend({
   new: function(event){
     event.preventDefault();
     var formData = $(event.target).serializeJSON();
-    var board = new Progressi.Models.Board(formData["board"]);
+    var board = new Progressit.Models.Board(formData["board"]);
     board.save({}, {
       success: function(){
-        Progressi.Collections.boards.add(board);
+        Progressit.Collections.boards.add(board);
         Backbone.history.navigate('', { trigger: true });
       }
     });

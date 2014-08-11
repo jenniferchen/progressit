@@ -1,10 +1,10 @@
-window.Progressi = {
+window.Progressit = {
   Models: {},
   Collections: {},
   Views: {},
   Routers: {},
   initialize: function() {
-    new Progressi.Routers.AppRouter();
+    new Progressit.Routers.AppRouter();
     Backbone.history.start();
   }
 };

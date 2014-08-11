@@ -1,4 +1,4 @@
-Progressi.Routers.AppRouter = Backbone.Router.extend({
+Progressit.Routers.AppRouter = Backbone.Router.extend({
   routes: {
     "": "summary",
     "boards/new": "boardNew",
@@ -7,16 +7,16 @@ Progressi.Routers.AppRouter = Backbone.Router.extend({
   },
 
   initialize: function(){
-    Progressi.Collections.boards = new Progressi.Collections.Boards();
-    Progressi.Collections.cards = new Progressi.Collections.Cards();
+    Progressit.Collections.boards = new Progressit.Collections.Boards();
+    Progressit.Collections.cards = new Progressit.Collections.Cards();
     this._boardsIndex();
   },
 
   _boardsIndex: function(){
-    var boards = Progressi.Collections.boards;
+    var boards = Progressit.Collections.boards;
     boards.fetch({
       success: function(){
-        var indexView = new Progressi.Views.BoardsIndex({ collection: boards });
+        var indexView = new Progressit.Views.BoardsIndex({ collection: boards });
         $(".left-sidebar").html(indexView.render().$el);
       }
     });
@@ -28,10 +28,10 @@ Progressi.Routers.AppRouter = Backbone.Router.extend({
 
   cardsIndex: function(){
     var router = this;
-    var cards = Progressi.Collections.cards;
+    var cards = Progressit.Collections.cards;
     cards.fetch({
       success: function(){
-        var indexView = new Progressi.Views.CardsIndex({ collection: cards});
+        var indexView = new Progressit.Views.CardsIndex({ collection: cards});
         router._swapContent(indexView);
       }
     })
@@ -39,22 +39,22 @@ Progressi.Routers.AppRouter = Backbone.Router.extend({
 
   boardShow: function(id){
     var router = this;
-    var board = new Progressi.Models.Board({ id: id });
+    var board = new Progressit.Models.Board({ id: id });
     board.fetch({
       success: function(){
-        var showView = new Progressi.Views.BoardShow({ model: board });
+        var showView = new Progressit.Views.BoardShow({ model: board });
         router._swapContent(showView);
-        var members = new Progressi.Collections.Members({ board: board });
+        var members = new Progressit.Collections.Members({ board: board });
         members.fetch();  
-        var membersView = new Progressi.Views.MembersIndex({ model: board, collection: members});
+        var membersView = new Progressit.Views.MembersIndex({ model: board, collection: members});
         router._swapMembers(membersView);
       }
     })
   },
 
   boardNew: function(){
-    var board = new Progressi.Models.Board();
-    var newView = new Progressi.Views.BoardNew({ model: board });
+    var board = new Progressit.Models.Board();
+    var newView = new Progressit.Views.BoardNew({ model: board });
     this._swapContent(newView);
   },
 

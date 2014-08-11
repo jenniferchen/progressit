@@ -1,4 +1,4 @@
-Progressi.Views.ListNew = Backbone.View.extend({
+Progressit.Views.ListNew = Backbone.View.extend({
   template: JST['lists/new'],
 
   events: {
@@ -15,7 +15,7 @@ Progressi.Views.ListNew = Backbone.View.extend({
     event.preventDefault();
     var view = this;
     var formData = $(event.target).serializeJSON();
-    var list = new Progressi.Models.List(formData["list"]);
+    var list = new Progressit.Models.List(formData["list"]);
     list.save({}, {
       success: function(){
         view.model.lists().add(list);

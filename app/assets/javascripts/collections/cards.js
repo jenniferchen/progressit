@@ -1,5 +1,5 @@
-Progressi.Collections.Cards = Backbone.Collection.extend({
-  model: Progressi.Models.Card,
+Progressit.Collections.Cards = Backbone.Collection.extend({
+  model: Progressit.Models.Card,
   url: 'api/cards',
   comparator: 'ord',
 

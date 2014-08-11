@@ -1,4 +1,4 @@
-Progressi.Views.CardShow = Backbone.CompositeView.extend({
+Progressit.Views.CardShow = Backbone.CompositeView.extend({
   template: JST['cards/show'],
   tagName: 'li',
   className: "card list-group-item",

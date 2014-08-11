@@ -1,4 +1,4 @@
-Progressi.Views.CardsIndex = Backbone.CompositeView.extend({
+Progressit.Views.CardsIndex = Backbone.CompositeView.extend({
   template: JST["cards/index"],
   events: {
   },
@@ -7,7 +7,7 @@ Progressi.Views.CardsIndex = Backbone.CompositeView.extend({
     var view = this;
     this.listenTo(this.collection, "change", this.render);
     this.collection.each(function(card){
-      var cardView = new Progressi.Views.CardShow({ model: card });
+      var cardView = new Progressit.Views.CardShow({ model: card });
       view.addSubview(".cards", cardView);
     })
   },

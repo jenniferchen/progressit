@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Progressi::Application.config.secret_key_base = 'f2d572e788cd531fe1769ff0b8a32497677340618e561efc07ffa25648d58d2da1ce00ed770ea099ebae3d5a15609635afe381085f0d1629dc83c4be3f95fd92'
+Progressit::Application.config.secret_key_base = 'f2d572e788cd531fe1769ff0b8a32497677340618e561efc07ffa25648d58d2da1ce00ed770ea099ebae3d5a15609635afe381085f0d1629dc83c4be3f95fd92'

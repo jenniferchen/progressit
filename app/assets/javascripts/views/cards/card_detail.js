@@ -1,4 +1,4 @@
-Progressi.Views.CardDetail = Backbone.CompositeView.extend({
+Progressit.Views.CardDetail = Backbone.CompositeView.extend({
   template: JST['cards/detail'],
   tagName: "div",
   className: "modal fade",

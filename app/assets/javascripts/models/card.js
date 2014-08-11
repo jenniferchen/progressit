@@ -1,4 +1,4 @@
-Progressi.Models.Card = Backbone.Model.extend({
+Progressit.Models.Card = Backbone.Model.extend({
   urlRoot: 'api/cards',
 
   validate: function(attributes){
@@ -8,7 +8,7 @@ Progressi.Models.Card = Backbone.Model.extend({
   },
   
   items: function(){
-    this._items = this._items || new Progressi.Collections.Items([], {card: this});
+    this._items = this._items || new Progressit.Collections.Items([], {card: this});
     return this._items;
   },
 

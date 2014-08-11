@@ -1,4 +1,4 @@
-Progressi.Views.ListShow = Backbone.CompositeView.extend({
+Progressit.Views.ListShow = Backbone.CompositeView.extend({
   template: JST['lists/show'],
   tagName: "li",
   className: "list",
@@ -18,7 +18,7 @@ Progressi.Views.ListShow = Backbone.CompositeView.extend({
   addCard: function(card){
     var idTag = "#card-" + card.id;
     if (this.$el.find(idTag).length == 0){
-      var cardShowView = new Progressi.Views.CardShow({ model: card});
+      var cardShowView = new Progressit.Views.CardShow({ model: card});
       this.addSubview('.cards', cardShowView);
     }
   },
@@ -35,7 +35,7 @@ Progressi.Views.ListShow = Backbone.CompositeView.extend({
 
   renderNewCardView: function(){
     this.$('.glyphicon-plus').addClass("hidden");
-    var cardNewView = new Progressi.Views.CardNew({ model: this.model });
+    var cardNewView = new Progressit.Views.CardNew({ model: this.model });
     this.swapSubview('.cards-new', cardNewView);
   },
 

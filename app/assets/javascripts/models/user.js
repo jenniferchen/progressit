@@ -1,3 +1,3 @@
-Progressi.Models.User = Backbone.Model.extend({
+Progressit.Models.User = Backbone.Model.extend({
   urlRoot: 'api/users'
 });

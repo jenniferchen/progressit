@@ -1,4 +1,4 @@
-Progressi.Views.BoardMembershipNew = Backbone.View.extend({
+Progressit.Views.BoardMembershipNew = Backbone.View.extend({
   template: JST['board_memberships/new'],
 
   events: {
@@ -15,10 +15,10 @@ Progressi.Views.BoardMembershipNew = Backbone.View.extend({
     event.preventDefault();
     var view = this;
     var formData = $(event.target).serializeJSON();
-    var boardMembership = new Progressi.Models.BoardMembership({ board: this.model });
+    var boardMembership = new Progressit.Models.BoardMembership({ board: this.model });
     boardMembership.save(formData, {
       success: function(){
-        var newMember = new Progressi.Models.Member({ id: boardMembership.get('user_id') })
+        var newMember = new Progressit.Models.Member({ id: boardMembership.get('user_id') })
         newMember.fetch({ data: { board_id: view.model.id } });
         view.collection.add(newMember);
       }
