@@ -1,11 +1,15 @@
-# Project Manager
+# Progressit
 
-A tool for managing project workflow.
-Users can create boards with lists and interact with the lists through drag and drop actions. 
-Implemented using Rails, Backbone, and JQuery UI.
+A collaboration tool for managing project workflow
+
+Users can:
+- Create projects with workflows and tasks
+- Interact with the workflows and tasks through drag and drop actions
+- Add team members to projects and assign tasks
+- Track amount of time spent on each task
+
+Implemented using Rails, Backbone, and JQuery UI
 
 Future Enhancements:
-- Allow editting of boards, lists, and cards
-- Add additional details to cards
-- Add user relationships so that a user can add colleagues to projects and assign tasks
-- Add metrics for workload prediction and productivity benchmarking
+- Allow editting of projects, workflows, and tasks
+- Add data visualization for analysis of project progress and productivity
