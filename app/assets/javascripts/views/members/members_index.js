@@ -51,8 +51,15 @@ Progressit.Views.MembersIndex = Backbone.CompositeView.extend({
     members.draggable({
       appendTo: 'body',
       containment: 'window',
-      scroll: false,
-      helper: 'clone'
+      scroll: true,
+      helper: 'clone',
+      start: function (event, ui) {
+         $(this).data("startingScrollTop",window.pageYOffset);
+      },
+      drag: function(event,ui){
+         var st = parseInt($(this).data("startingScrollTop"));
+         ui.position.top -= st;
+      },
     });
   }
 })
