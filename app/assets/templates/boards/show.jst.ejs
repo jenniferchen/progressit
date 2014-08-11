@@ -1,7 +1,12 @@
 <h2><%=board.escape("title")%></h2>
 
-  <ul class="lists top-buffer list-unstyled">
-  </ul>
+<ul class="lists top-buffer list-unstyled">
+</ul>
 
-  <div class="lists-new">
-  </div>
+
+<% if (board.get('owned') == true){ %>
+  <button class="btn btn-primary new-list"><span class="glyphicon glyphicon-plus"></span> New Workstream</button>
+<% } %>
+
+<div class="lists-new">
+</div>

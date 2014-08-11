@@ -23,7 +23,8 @@ Progressit.Routers.AppRouter = Backbone.Router.extend({
   },
 
   summary: function(){
-
+    var summaryView = new Progressit.Views.Summary({ collection: Progressit.Collections.boards })
+    this._swapContent(summaryView);
   },
 
   cardsIndex: function(){

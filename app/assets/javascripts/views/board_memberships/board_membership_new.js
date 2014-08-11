@@ -2,7 +2,8 @@ Progressit.Views.BoardMembershipNew = Backbone.View.extend({
   template: JST['board_memberships/new'],
 
   events: {
-    "submit form": 'new'
+    "submit form": 'new',
+    "click .cancel": 'cancel'
   },
 
   render: function(){
@@ -23,5 +24,11 @@ Progressit.Views.BoardMembershipNew = Backbone.View.extend({
         view.collection.add(newMember);
       }
     });
+  },
+
+  cancel: function(event){
+    event.preventDefault();
+    this.$el.parent().siblings().removeClass('hidden');
+    this.remove();
   }
 });

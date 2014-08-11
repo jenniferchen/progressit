@@ -1,16 +1,15 @@
 Progressit.Views.BoardShow = Backbone.CompositeView.extend({
   template: JST['boards/show'],
 
+  events: {
+    "click .new-list": "renderListNew"
+  },
+
   initialize: function(){
     var lists = this.model.lists();
     this.listenTo(lists, "add", this.addList);
 
     lists.each(this.addList.bind(this));
-
-    if (this.model.get('owned') == true){
-      var listNewView = new Progressit.Views.ListNew({ model: this.model });
-      this.addSubview(".lists-new", listNewView);
-    }
   },
 
   addList: function(list, index){
@@ -42,5 +41,11 @@ Progressit.Views.BoardShow = Backbone.CompositeView.extend({
         view.model.lists().updateOrd(data);
       }
     });
+  },
+
+  renderListNew: function(event){
+    this.$('.new-list').addClass("hidden");
+    var listNewView = new Progressit.Views.ListNew({ model: this.model });
+    this.addSubview('.lists-new', listNewView);
   }
 });

@@ -17,7 +17,20 @@
 @import "font-awesome";
 
 body { 
-    padding-top: 65px; 
+  padding-top: 65px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(66,139,202, .2);
 }
 
 .top-buffer { margin-top:20px; }
@@ -87,6 +100,20 @@ body {
  */
 .navbar-fixed-top {
   border: 0;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #FFFFFF;
+  font-size: 26px;
+  padding: 8px 15px;
+}
+
+.glyphicon-play {
+  top: 4px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #FFFFFF;
 }
 
 /*

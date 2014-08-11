@@ -2,7 +2,8 @@ Progressit.Views.CardNew = Backbone.View.extend({
   template: JST['cards/new'],
 
   events: {
-    "submit form#create-card": "newCard"
+    "submit form#create-card": "newCard",
+    "click .cancel": 'cancel'
   },
 
   render: function(){
@@ -33,5 +34,11 @@ Progressit.Views.CardNew = Backbone.View.extend({
         $('.glyphicon-plus').removeClass("hidden");
       }
     })
+  },
+
+  cancel: function(event){
+    event.preventDefault();
+    this.$el.siblings().removeClass('hidden');
+    this.remove();
   }
 });

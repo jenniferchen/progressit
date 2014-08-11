@@ -1,5 +1,8 @@
 json.extract! @board, :id, :title, :created_at, :updated_at
 json.owned @board.owned?(current_user)
+json.total_estimated @board.total_estimated
+json.total_actual @board.total_actual
+json.total_completed @board.total_completed
 
 json.members @board.members do |member|
   json.id member.id

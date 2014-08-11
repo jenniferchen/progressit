@@ -14,6 +14,7 @@ class Board < ActiveRecord::Base
 
   belongs_to :user
   has_many :lists
+  has_many :cards, through: :lists, source: :cards
   has_many :board_memberships
   has_many :members, through: :board_memberships, source: :user
 
@@ -24,5 +25,17 @@ class Board < ActiveRecord::Base
 
   def owned?(u)
     self.user_id == u.id ? true : false
+  end
+
+  def total_estimated
+    self.cards.sum('estimated_mins')
+  end
+
+  def total_actual
+    self.cards.where('completion_time IS NOT NULL').sum('actual_mins')
+  end
+
+  def total_completed
+    self.cards.where('completion_time IS NOT NULL').sum('estimated_mins')
   end
 end

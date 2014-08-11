@@ -2,7 +2,8 @@ Progressit.Views.ListNew = Backbone.View.extend({
   template: JST['lists/new'],
 
   events: {
-    "submit form#create-list": 'newList'
+    "submit form#create-list": 'newList',
+    "click .cancel": 'cancel'
   },
 
   render: function(){
@@ -18,9 +19,15 @@ Progressit.Views.ListNew = Backbone.View.extend({
     var list = new Progressit.Models.List(formData["list"]);
     list.save({}, {
       success: function(){
+        list.set({ owned: true });
         view.model.lists().add(list);
-        view.render();
       }
     });
+  },
+  
+  cancel: function(event){
+    event.preventDefault();
+    this.$el.parent().siblings().removeClass('hidden');
+    this.remove();
   }
 });

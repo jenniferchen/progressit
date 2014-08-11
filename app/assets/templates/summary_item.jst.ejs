@@ -1,0 +1,5 @@
+<h3><%= board.get('title') %></h3>
+<div class="progress">
+  <div class="progress-bar" aria-valuenow="<%= board.completionPercent() %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= board.completionPercent() %>%;"><%= board.completionPercent() %>%
+  </div>
+</div>

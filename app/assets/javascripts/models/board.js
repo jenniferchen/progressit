@@ -12,5 +12,13 @@ Progressit.Models.Board = Backbone.Model.extend({
       delete payload.lists;
     }
     return payload;
+  },
+
+  completionPercent: function(){
+    if (this.get('total_estimated') === 0) {
+      return 0;
+    } else {
+      return (this.get('total_completed') / this.get('total_estimated') * 100).toFixed();
+    }
   }
 });
