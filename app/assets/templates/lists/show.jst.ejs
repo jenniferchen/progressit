@@ -1,7 +1,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <strong><%= list.escape('title') %></strong>
-    <span class="glyphicon glyphicon-remove delete-list pull-right"></span>
+    <% if (list.get('owned') === true){ %>
+      <span class="glyphicon glyphicon-remove delete-list pull-right"></span>
+    <% } %>
   </div>
   <ul class="list-group cards">
   </ul>
