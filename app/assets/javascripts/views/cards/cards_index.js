@@ -5,7 +5,7 @@ Progressit.Views.CardsIndex = Backbone.CompositeView.extend({
 
   initialize: function(){
     var view = this;
-    this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "sync add destroy", this.render);
   },
 
   render: function(){

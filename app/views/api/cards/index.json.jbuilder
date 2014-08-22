@@ -5,6 +5,7 @@ json.array! @cards do |card|
     json.assigned_member card.user.name
   end
 
+  json.owned card.owned?(current_user)
   json.status card.status
   json.assigned card.assigned?(current_user)
 end

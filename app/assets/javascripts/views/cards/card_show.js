@@ -57,7 +57,13 @@ Progressit.Views.CardShow = Backbone.CompositeView.extend({
         var id = ui.draggable.attr('id').match(/user-(\d+)/)[1];
         view.model.save({ user_id: id }, {
           success: function(){
-            view.model.fetch();
+            view.model.fetch({
+              success: function(){
+                if (view.model.get('assigned') === true) {
+                  Progressit.Collections.cards.add(view.model)
+                }
+              }
+            })
           }
         })
       }

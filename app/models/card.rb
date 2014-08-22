@@ -37,4 +37,8 @@ class Card < ActiveRecord::Base
   def assigned?(u)
     self.user == u ? true : false
   end
+
+  def owned?(u)
+    self.list.owned?(u) ? true : false
+  end
 end
